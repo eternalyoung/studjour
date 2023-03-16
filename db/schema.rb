@@ -18,8 +18,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_071401) do
   end
 
   create_table "lessons", force: :cascade do |t|
-    t.integer "number"
-    t.integer "week"
+    t.integer "number", null: false
+    t.boolean "adjacent", default: false, null: false
     t.integer "schedule_id", null: false
     t.integer "subject_id", null: false
     t.integer "teacher_id", null: false
@@ -50,6 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_071401) do
     t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["number"], name: "index_rooms_on_number"
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -64,12 +65,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_071401) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_subjects_on_name"
   end
 
   create_table "teachers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_teachers_on_name"
   end
 
   add_foreign_key "lessons", "rooms"

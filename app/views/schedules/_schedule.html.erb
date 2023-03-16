@@ -2,22 +2,30 @@
 <div class="col-lg-4 col-md-6">
   <div class="card mb-md-4 mb-1">
     <div class="card-body">
-      <h4 class="card-title text-center"> <%= schedule.wday %></h4>
+      <h4 class="card-title text-center"> <%= schedule.wday %> 
+      <%= link_to bi("pencil text-muted"), edit_schedule_path(schedule)%>
+      </h4>
       <table class="table">
         <tr>
           <th>№</th>
           <th><%= t('.room') %></th>
           <th><%= t('.subject') %></th>
+          <th></th>
         </tr>
         <% schedule.lessons.sort_by(&:number).each do |lesson| %>
         <tr>
-          <th><%= lesson.number if lesson.week != 2%></th>
+          <th><%= lesson.number unless lesson.adjacent%></th>
           <th><%= lesson.room.number %></th>
-          <th><%= lesson.subject.name %> <br>
+          <th><%= lesson.subject.name %><br>
           <%= lesson.teacher.name %></th>
+          <th><%= link_to bi("pencil"), edit_schedule_lesson_path(id: lesson, schedule_id: schedule.id)%><br>
+          <%= button_to bi("x-square text-danger"), schedule_lesson_path(id: lesson, schedule_id: schedule.id), 
+          method: :delete, class: "button", onclick: "return confirm('Точно удалить урок?')"%></th>
         </tr>
         <% end %>
       </table>
+      <i class="bi bi- m"></i>
+      <%= link_to bi("plus-square ms-2 text-primary"), new_schedule_lesson_path(schedule_id: schedule.id) %>
     </div>
   </div>
 </div>

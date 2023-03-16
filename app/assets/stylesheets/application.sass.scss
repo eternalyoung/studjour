@@ -1,3 +1,4 @@
 // Entry point for your Sass build
 @import "bootstrap/scss/bootstrap";
-@import "bootstrap-icons/font/bootstrap-icons"
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+@import "button"

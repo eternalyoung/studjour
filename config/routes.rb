@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  resources :groups
   root "schedules#index"
   
+  resources :groups
   resources :lessons_changes
-  resources :lessons
-  resources :schedules, except: %i[new, create, destroy]
+  resources :schedules, except: %i[new, create, destroy] do
+    resources :lessons
+  end
   resources :subjects
   resources :teachers
   resources :rooms
