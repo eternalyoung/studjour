@@ -6,10 +6,10 @@
 
 <div id="schedules">
   <% groups.each do |group| %>
-    <p>
+    <h3 class="text-center">
       <strong>Group:</strong>
-      <%= group %>
-    </p>
+      <%= group.name %>
+    </h3>
 
     <div class="row">
       <% schedules = @schedules.where(group: group)%>
@@ -19,5 +19,3 @@
     </div>
   <% end %>
 </div>
-
-<%= link_to "New schedule", new_schedule_path %>

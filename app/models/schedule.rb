@@ -8,6 +8,7 @@ class Schedule < ApplicationRecord
     6 => "Суббота"
   }.freeze
 
+  belongs_to :group
   has_many :lessons
 
   def wday

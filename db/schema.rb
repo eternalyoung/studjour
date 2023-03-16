@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_15_080607) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_16_071401) do
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "lessons", force: :cascade do |t|
     t.integer "number"
     t.integer "week"
@@ -47,10 +53,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_080607) do
   end
 
   create_table "schedules", force: :cascade do |t|
-    t.string "group"
+    t.integer "group_id", null: false
     t.integer "weeks_day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_schedules_on_group_id"
   end
 
   create_table "subjects", force: :cascade do |t|
@@ -73,4 +80,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_080607) do
   add_foreign_key "lessons_changes", "rooms"
   add_foreign_key "lessons_changes", "subjects"
   add_foreign_key "lessons_changes", "teachers"
+  add_foreign_key "schedules", "groups"
 end
