@@ -2,12 +2,21 @@
 
 <h1>Schedules</h1>
 
+<% groups = @schedules.map(&:group).uniq %>
+
 <div id="schedules">
-  <% @schedules.each do |schedule| %>
-    <%= render schedule %>
+  <% groups.each do |group| %>
     <p>
-      <%= link_to "Show this schedule", schedule %>
+      <strong>Group:</strong>
+      <%= group %>
     </p>
+
+    <div class="row">
+      <% schedules = @schedules.where(group: group)%>
+      <% schedules.each do |schedule| %>
+        <%= render schedule %>
+      <% end %>
+    </div>
   <% end %>
 </div>
 

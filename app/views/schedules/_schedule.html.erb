@@ -1,12 +1,23 @@
-<div id="<%= dom_id schedule %>">
-  <p>
-    <strong>Group:</strong>
-    <%= schedule.group %>
-  </p>
 
-  <p>
-    <strong>Weeks day:</strong>
-    <%= schedule.weeks_day %>
-  </p>
-
+<div class="col-lg-4 col-md-6">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title text-center"> <%= schedule.wday %></h4>
+      <table class="table">
+        <tr>
+          <th>№</th>
+          <th><%= t('.room') %></th>
+          <th><%= t('.subject') %></th>
+        </tr>
+        <% schedule.lessons.sort_by(&:number).each do |lesson| %>
+        <tr>
+          <th><%= lesson.number if lesson.week != 2%></th>
+          <th><%= lesson.room.number %></th>
+          <th><%= lesson.subject.name %> <br>
+          <%= lesson.teacher.name %></th>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
 </div>
