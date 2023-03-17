@@ -22,22 +22,25 @@
 
     <div class="mb-3">
       <%= form.label :adjacent, class:"form-check-label" %>
-      <%= form.check_box :adjacent, class: "form-check-input", in: 1..2 %>
+      <%= form.check_box :adjacent, class: "form-check-input" %>
     </div>
 
     <div class="mb-3">
       <%= form.label :subject_id, class:"form-label" %>
-      <%= form.collection_select :subject_id, Subject.all, :id, :name, {}, { class: "form-select" } %>
+      <%= form.collection_select :subject_id, Subject.all, :id, :name, {}, { class: "form-select mb-1" } %>
+      <%= link_to bi("plus-square"), new_subject_path%>
     </div>
 
     <div class="mb-3">
       <%= form.label :teacher_id, class:"form-label" %>
-      <%= form.collection_select :teacher_id, Teacher.all, :id, :name, {}, { class: "form-select" } %>
+      <%= form.collection_select :teacher_id, Teacher.all, :id, :name, {}, { class: "form-select mb-1" } %>
+      <%= link_to bi("plus-square"), new_teacher_path%>
     </div>
 
     <div class="mb-3">
       <%= form.label :room_id, class:"form-label" %>
-      <%= form.collection_select :room_id, Room.all, :id, :number, {}, { class: "form-select" } %>
+      <%= form.collection_select :room_id, Room.all, :id, :number, {}, { class: "form-select mb-1" } %>
+      <%= link_to bi("plus-square"), new_room_path%>
     </div>
 
     <div class="mb-3">
