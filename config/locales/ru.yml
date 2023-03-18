@@ -1,0 +1,41 @@
+ru:
+  hello: "Hello world"
+  layouts:
+    application:
+      title: "Журнал студента"
+      schedules: "Расписание"
+      events: "Мероприятия"
+      menu: "Меню"
+      login: "Войти"
+
+  activerecord:
+    models:
+      lesson: Урок
+    attributes:
+      lesson:
+        number: Номер
+        adjacent: Вторая неделя
+        schedule_id: Расписание
+        teacher_id: Преподаватель
+        room_id: Кабинет
+        subject_id: Дисциплина
+  
+  groups:
+    index:
+      groups: Группы
+    group:
+      group: Группа
+  
+  schedules:
+    schedule:
+      room: Кабинет
+      subject: Предмет
+      delete_confirm: Точно удалить урок?
+
+  lessons:
+    new:
+      new: Новый урок
+    form:
+      save: Сохранить
+  
+

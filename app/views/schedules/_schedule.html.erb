@@ -18,7 +18,7 @@
           <%= lesson.teacher.name %></th>
           <th><%= link_to bi("pencil"), edit_group_schedule_lesson_path(id: lesson, schedule_id: schedule.id, group_id: schedule.group.id)%><br>
           <%= button_to bi("x-square text-danger"), group_schedule_lesson_path(id: lesson, schedule_id: schedule.id, group_id: schedule.group.id), 
-          method: :delete, class: "button", onclick: "return confirm('Точно удалить урок?')"%></th>
+          method: :delete, class: "button", onclick: "return confirm('#{t(".delete_confirm")}')"%></th>
         </tr>
         <% end %>
       </table>
