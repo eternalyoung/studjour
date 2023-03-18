@@ -1,21 +1,17 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Schedules</h1>
-
-<% groups = @schedules.map(&:group).uniq %>
+<h1><%= t(".schedules")%></h1>
 
 <div id="schedules">
-  <% groups.each do |group| %>
-    <h3 class="text-center">
-      <strong>Group:</strong>
-      <%= group.name %>
-    </h3>
+  <h3 class="text-center">
+    <strong>Group:</strong>
+    <%= @group.name %>
+  </h3>
 
-    <div class="row">
-      <% schedules = @schedules.where(group: group)%>
-      <% schedules.each do |schedule| %>
-        <%= render schedule %>
-      <% end %>
-    </div>
-  <% end %>
+  <div class="row">
+    <% schedules = @schedules.where(group: @group)%>
+    <% schedules.each do |schedule| %>
+      <%= render schedule %>
+    <% end %>
+  </div>
 </div>

@@ -1,13 +1,5 @@
 class TeachersController < ApplicationController
-  before_action :set_teacher, only: %i[show edit update destroy]
-
-  # GET /teachers
-  def index
-    @teachers = Teacher.all
-  end
-
-  # GET /teachers/1
-  def show; end
+  before_action :set_teacher, only: %i[edit update destroy]
 
   # GET /teachers/new
   def new

@@ -1,13 +1,5 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: %i[show edit update destroy]
-
-  # GET /subjects
-  def index
-    @subjects = Subject.all
-  end
-
-  # GET /subjects/1
-  def show; end
+  before_action :set_subject, only: %i[edit update destroy]
 
   # GET /subjects/new
   def new

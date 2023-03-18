@@ -1,4 +1,5 @@
 class SchedulesController < ApplicationController
+  before_action :set_group
   before_action :set_schedule, only: %i[show edit update destroy]
 
   # GET /schedules
@@ -11,7 +12,7 @@ class SchedulesController < ApplicationController
 
   # GET /schedules/new
   def new
-    @schedule = Schedule.new
+    @schedule = @group.schedule.new
   end
 
   # GET /schedules/1/edit
@@ -19,7 +20,7 @@ class SchedulesController < ApplicationController
 
   # POST /schedules
   def create
-    @schedule = Schedule.new(schedule_params)
+    @schedule = @group.schedule.new(schedule_params)
 
     if @schedule.save
       redirect_to @schedule, notice: "Schedule was successfully created."
@@ -44,6 +45,10 @@ class SchedulesController < ApplicationController
   end
 
   private
+
+  def set_group
+    @group = Group.find(params[:group_id])
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_schedule

@@ -1,4 +1,5 @@
 class LessonsController < ApplicationController
+  before_action :set_group
   before_action :set_schedule
   before_action :set_lesson, only: %i[show edit update destroy]
 
@@ -23,7 +24,7 @@ class LessonsController < ApplicationController
     @lesson = @schedule.lessons.new(lesson_params)
 
     if @lesson.save
-      redirect_to schedules_path, notice: "Lesson was successfully created."
+      redirect_to group_schedules_path(@group), notice: "Lesson was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +33,7 @@ class LessonsController < ApplicationController
   # PATCH/PUT /lessons/1
   def update
     if @lesson.update(lesson_params)
-      redirect_to schedules_path, notice: "Lesson was successfully updated."
+      redirect_to group_schedules_path(@group), notice: "Lesson was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -41,10 +42,14 @@ class LessonsController < ApplicationController
   # DELETE /lessons/1
   def destroy
     @lesson.destroy
-    redirect_to schedules_path, notice: "Lesson was successfully destroyed."
+    redirect_to group_schedules_path(@group), notice: "Lesson was successfully destroyed."
   end
 
   private
+
+  def set_group
+    @group = Group.find(params[:group_id])
+  end
 
   def set_schedule
     @schedule = Schedule.find(params[:schedule_id])

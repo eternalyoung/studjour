@@ -1,7 +1,12 @@
 <div id="<%= dom_id group %>">
-  <p>
-    <strong>Name:</strong>
+  <h3 class="text-center">
+    <strong>Group:</strong>
     <%= group.name %>
-  </p>
+  </h3>
 
+  <div class="row">
+    <% group.schedules.each do |schedule| %>
+      <%= render schedule %>
+    <% end %>
+  </div>
 </div>
