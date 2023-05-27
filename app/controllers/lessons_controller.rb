@@ -23,6 +23,7 @@ class LessonsController < ApplicationController
 
   # POST /lessons
   def create
+    binding.irb
     @lesson = @schedule.lessons.new(lesson_params)
 
     if @lesson.save
@@ -64,6 +65,6 @@ class LessonsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def lesson_params
-    params.require(:lesson).permit(:number, :adjacent, :schedule_id, :subject_id, :teacher_id, :room_id, :got_changes)
+    params.require(:lesson).permit(:number, :adjacent, :schedule_id, :subject_id, :teacher_id, :room, :got_changes)
   end
 end

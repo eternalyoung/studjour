@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_15_080607) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_27_123732) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "citext"
   enable_extension "plpgsql"
 
   create_table "groups", force: :cascade do |t|
@@ -26,11 +27,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_080607) do
     t.bigint "schedule_id", null: false
     t.bigint "subject_id", null: false
     t.bigint "teacher_id", null: false
-    t.bigint "room_id", null: false
+    t.integer "room", null: false
     t.boolean "got_changes", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["room_id"], name: "index_lessons_on_room_id"
     t.index ["schedule_id"], name: "index_lessons_on_schedule_id"
     t.index ["subject_id"], name: "index_lessons_on_subject_id"
     t.index ["teacher_id"], name: "index_lessons_on_teacher_id"
@@ -40,20 +40,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_080607) do
     t.bigint "lesson_id", null: false
     t.bigint "subject_id", null: false
     t.bigint "teacher_id", null: false
-    t.bigint "room_id", null: false
+    t.integer "room", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_lessons_changes_on_lesson_id"
-    t.index ["room_id"], name: "index_lessons_changes_on_room_id"
     t.index ["subject_id"], name: "index_lessons_changes_on_subject_id"
     t.index ["teacher_id"], name: "index_lessons_changes_on_teacher_id"
-  end
-
-  create_table "rooms", force: :cascade do |t|
-    t.integer "number", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["number"], name: "index_rooms_on_number", unique: true
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -78,13 +70,45 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_080607) do
     t.index ["name"], name: "index_teachers_on_name", unique: true
   end
 
-  add_foreign_key "lessons", "rooms"
+  create_table "user_login_change_keys", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "login", null: false
+    t.datetime "deadline", null: false
+  end
+
+  create_table "user_password_reset_keys", force: :cascade do |t|
+    t.string "key", null: false
+    t.datetime "deadline", null: false
+    t.datetime "email_last_sent", default: -> { "CURRENT_TIMESTAMP" }, null: false
+  end
+
+  create_table "user_remember_keys", force: :cascade do |t|
+    t.string "key", null: false
+    t.datetime "deadline", null: false
+  end
+
+  create_table "user_verification_keys", force: :cascade do |t|
+    t.string "key", null: false
+    t.datetime "requested_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "email_last_sent", default: -> { "CURRENT_TIMESTAMP" }, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.integer "status", default: 1, null: false
+    t.citext "email", null: false
+    t.string "password_hash"
+    t.index ["email"], name: "index_users_on_email", unique: true, where: "(status = ANY (ARRAY[1, 2]))"
+  end
+
   add_foreign_key "lessons", "schedules"
   add_foreign_key "lessons", "subjects"
   add_foreign_key "lessons", "teachers"
   add_foreign_key "lessons_changes", "lessons"
-  add_foreign_key "lessons_changes", "rooms"
   add_foreign_key "lessons_changes", "subjects"
   add_foreign_key "lessons_changes", "teachers"
   add_foreign_key "schedules", "groups"
+  add_foreign_key "user_login_change_keys", "users", column: "id"
+  add_foreign_key "user_password_reset_keys", "users", column: "id"
+  add_foreign_key "user_remember_keys", "users", column: "id"
+  add_foreign_key "user_verification_keys", "users", column: "id"
 end

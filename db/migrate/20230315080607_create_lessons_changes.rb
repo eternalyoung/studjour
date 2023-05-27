@@ -4,7 +4,7 @@ class CreateLessonsChanges < ActiveRecord::Migration[7.0]
       t.references :lesson, null: false, foreign_key: true
       t.references :subject, null: false, foreign_key: true
       t.references :teacher, null: false, foreign_key: true
-      t.references :room, null: false, foreign_key: true
+      t.integer :room, null: false
 
       t.timestamps
     end

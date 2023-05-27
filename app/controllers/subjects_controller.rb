@@ -15,7 +15,7 @@ class SubjectsController < ApplicationController
     @subject = Subject.new(subject_params)
 
     if @subject.save
-      redirect_to @subject, notice: "Subject was successfully created."
+      redirect_to groups_path(@group), notice: "Subject was successfully created."
     else
       render :new, status: :unprocessable_entity
     end

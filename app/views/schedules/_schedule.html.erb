@@ -13,7 +13,7 @@
         <% schedule.lessons.sort_by(&:number).each do |lesson| %>
         <tr>
           <th><%= lesson.number unless lesson.adjacent%></th>
-          <th><%= lesson.room.number %></th>
+          <th><%= lesson.room %></th>
           <th><%= lesson.subject.name %><br>
           <%= lesson.teacher.name %></th>
           <th><%= link_to bi("pencil"), edit_group_schedule_lesson_path(id: lesson, schedule_id: schedule.id, group_id: schedule.group.id)%><br>

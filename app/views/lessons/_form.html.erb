@@ -22,7 +22,7 @@
 
     <div class="mb-3">
       <%= form.label :adjacent, class:"form-check-label" %>
-      <%= form.check_box :adjacent, class: "form-check-input" %>
+      <%= form.check_box :adjacent, class: "form-check-input" %>``
     </div>
 
     <div class="mb-3">
@@ -38,9 +38,8 @@
     </div>
 
     <div class="mb-3">
-      <%= form.label :room_id, class:"form-label" %>
-      <%= form.collection_select :room_id, Room.all, :id, :number, {}, { class: "form-select mb-1" } %>
-      <%= link_to bi("plus-square"), new_room_path%>
+      <%= form.label :room, class:"form-label" %>
+      <%= form.number_field :room, class: "form-control", in: 100..999 %>
     </div>
 
     <div class="mb-3">

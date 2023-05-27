@@ -46,10 +46,14 @@
               </li>
             </ul>
               <!-- TODO: fix link path -->
-            <%= link_to t('.login'), root_path, class: 'btn btn-outline-primary'%>
+            <%= link_to t('.login'), rodauth.login_path, class: 'btn btn-outline-primary'%>
           </div>
         </div>
       </nav>
+
+      <div class="container">
+        <%= bootstrap_flash %>
+      </div>
 
       <%= yield %>
     </div>
