@@ -7,7 +7,8 @@ class LessonsChangesController < ApplicationController
   end
 
   # GET /lessons_changes/1
-  def show; end
+  def show
+  end
 
   # GET /lessons_changes/new
   def new
@@ -15,7 +16,8 @@ class LessonsChangesController < ApplicationController
   end
 
   # GET /lessons_changes/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /lessons_changes
   def create

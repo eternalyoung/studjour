@@ -5,10 +5,10 @@ class Lesson < ApplicationRecord
   belongs_to :room
 
   validates :number, presence: true
-  validates :number, numericality: { only_integer: true }
-  validates :number, numericality: { greater_than: 0 }
-  validates :number, numericality: { less_than: 8 }
-  validates :number, uniqueness: { scope: :schedule_id }, unless: -> { adjacent }
+  validates :number, numericality: {only_integer: true}
+  validates :number, numericality: {greater_than: 0}
+  validates :number, numericality: {less_than: 8}
+  validates :number, uniqueness: {scope: :schedule_id}, unless: -> { adjacent }
   validates :adjacent, inclusion: [true, false]
   validates :schedule, presence: true
   validates :subject, presence: true

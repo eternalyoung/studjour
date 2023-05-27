@@ -7,7 +7,8 @@ class SubjectsController < ApplicationController
   end
 
   # GET /subjects/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /subjects
   def create
