@@ -6,7 +6,7 @@ class CreateLessons < ActiveRecord::Migration[7.0]
       t.references :schedule, null: false, foreign_key: true
       t.references :subject, null: false, foreign_key: true
       t.references :teacher, null: false, foreign_key: true
-      t.references :room, null: false, foreign_key: true
+      t.integer :room, null: false
       t.boolean :got_changes, null: false, default: false
 
       t.timestamps

@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_080607) do
     t.integer "weeks_day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_schedules_on_group_id", unique: true
+    t.index ["group_id"], name: "index_schedules_on_group_id"
   end
 
   create_table "subjects", force: :cascade do |t|

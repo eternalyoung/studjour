@@ -3,7 +3,9 @@ ru:
   layouts:
     application:
       title: "Журнал студента"
+      groups: "Все расписания"
       schedules: "Расписание"
+      changes: "Изменения"
       events: "Мероприятия"
       menu: "Меню"
       login: "Войти"
@@ -22,7 +24,7 @@ ru:
   
   groups:
     index:
-      groups: Группы
+      groups: Расписания групп
     group:
       group: Группа
   
