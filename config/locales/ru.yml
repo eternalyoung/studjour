@@ -23,6 +23,13 @@ ru:
         teacher_id: Преподаватель
         room_id: Кабинет
         subject_id: Дисциплина
+      user:
+        tag: Телеграмм
+        sub_to_schedule: Подписка на расписание
+        sub_to_changes: Подписка на изменения
+        sub_to_all_events: Подписка на все мероприятия
+      group:
+        name: Название
   
   groups:
     index:
@@ -41,6 +48,16 @@ ru:
       new: Новый урок
     form:
       save: Сохранить
+
+  users:
+    edit:
+      change_password: Изменить пароль
+      close_account: Закрыть аккаунт
+    form:
+      save: Сохранить
+      # schedule_help: Каждый день Вы будете получать актуальное расписание с примененными изменениями
+      # changes_help: Каждый день Вы будете получать список изменений
+      # events_help: Вы будете получать уведомления перед началом каждого из мероприятий
 
   rodauth:
     account_expiration_error_flash: Вы не можете войти в эту учетную запись, так как срок ее действия истек

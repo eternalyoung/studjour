@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_30_153220) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_31_172238) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -113,7 +113,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_153220) do
     t.integer "status", default: 1, null: false
     t.citext "email", null: false
     t.string "password_hash"
+    t.string "tag"
+    t.boolean "sub_to_schedule", default: false
+    t.boolean "sub_to_changes", default: false
+    t.boolean "sub_to_all_events", default: false
+    t.bigint "group_id"
     t.index ["email"], name: "index_users_on_email", unique: true, where: "(status = ANY (ARRAY[1, 2]))"
+    t.index ["group_id"], name: "index_users_on_group_id"
   end
 
   add_foreign_key "lessons", "schedules"
@@ -129,4 +135,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_153220) do
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
   add_foreign_key "user_verification_keys", "users", column: "id"
+  add_foreign_key "users", "groups"
 end

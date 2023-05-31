@@ -1,9 +1,16 @@
-<h1>Editing user</h1>
+<h3><%= @user.email %></h3>
 
 <%= render "form", user: @user %>
 
 <br>
 
 <div>
-  <%= link_to "Show this user", profile_path(@user) %>
+  <ul>
+    <li>
+    <%= link_to t(".change_password"), rodauth.change_password_path, method: :post %>
+    </li>
+    <li>
+    <%= link_to t(".close_account"), rodauth.close_account_path %>
+    </li>
+  </ul>
 </div>

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update]
+  before_action :set_user
 
   # GET /users/1
   def show
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      redirect_to profile_path, notice: "User was successfully updated."
+      redirect_to profile_edit_path, notice: "User was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -25,6 +25,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email)
+    params.require(:user).permit(:tag, :group, :sub_to_schedule, :sub_to_changes, :sub_to_all_events)
   end
 end
