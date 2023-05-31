@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <title><%= t('.title') %></title>
     <link rel="icon" type="image/x-icon" href=<%=asset_path('favicon.ico')%>>
 
@@ -29,10 +30,12 @@
               <li class="nav-item">
                 <%= link_to t('.groups'), groups_path, class: 'nav-link' %>
               </li>
+              <% unless current_user.nil? %>
               <li class="nav-item">
               <!-- TODO: fix link path -->
                 <%= link_to t('.schedules'), root_path, class: 'nav-link' %>
               </li>
+              <% end %>
               <!-- TODO: fix link path -->
                 <%= link_to t('.changes'), root_path, class: 'nav-link' %>
               </li>
@@ -40,13 +43,14 @@
               <!-- TODO: fix link path -->
                 <%= link_to t('.events'), root_path, class: 'nav-link'%>
               </li>
-              <li class="nav-item">
-              <!-- TODO: fix link path -->
-                <%= link_to t('.menu'), root_path, class: 'nav-link'%>
-              </li>
             </ul>
               <!-- TODO: fix link path -->
-            <%= link_to t('.login'), rodauth.login_path, class: 'btn btn-outline-primary'%>
+            <% if current_user.nil? %>
+            <%= link_to t('.login'), rodauth.login_path, class: 'btn btn-outline-primary' %>
+            <% else %>
+            <%= link_to t('.profile'), rodauth.login_path, class: 'btn btn-outline-primary me-1' %>
+            <%= link_to t('.logout'), rodauth.logout_path, class: 'btn btn-outline-danger' %>
+            <% end %>
           </div>
         </div>
       </nav>

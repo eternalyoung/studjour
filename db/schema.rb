@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_27_123732) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_30_153220) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -46,6 +46,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_27_123732) do
     t.index ["lesson_id"], name: "index_lessons_changes_on_lesson_id"
     t.index ["subject_id"], name: "index_lessons_changes_on_subject_id"
     t.index ["teacher_id"], name: "index_lessons_changes_on_teacher_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_roles_on_name", unique: true
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -87,6 +94,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_27_123732) do
     t.datetime "deadline", null: false
   end
 
+  create_table "user_roles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "role_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_user_roles_on_role_id"
+    t.index ["user_id"], name: "index_user_roles_on_user_id"
+  end
+
   create_table "user_verification_keys", force: :cascade do |t|
     t.string "key", null: false
     t.datetime "requested_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
@@ -110,5 +126,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_27_123732) do
   add_foreign_key "user_login_change_keys", "users", column: "id"
   add_foreign_key "user_password_reset_keys", "users", column: "id"
   add_foreign_key "user_remember_keys", "users", column: "id"
+  add_foreign_key "user_roles", "roles"
+  add_foreign_key "user_roles", "users"
   add_foreign_key "user_verification_keys", "users", column: "id"
 end

@@ -16,14 +16,18 @@
           <th><%= lesson.room %></th>
           <th><%= lesson.subject.name %><br>
           <%= lesson.teacher.name %></th>
-          <th><%= link_to bi("pencil"), edit_group_schedule_lesson_path(id: lesson, schedule_id: schedule.id, group_id: schedule.group.id)%><br>
-          <%= button_to bi("x-square text-danger"), group_schedule_lesson_path(id: lesson, schedule_id: schedule.id, group_id: schedule.group.id), 
-          method: :delete, class: "button", onclick: "return confirm('#{t(".delete_confirm")}')"%></th>
+          <% if current_user&.able_to_edit?(:schedule) %>
+            <th><%= link_to bi("pencil"), edit_group_schedule_lesson_path(id: lesson, schedule_id: schedule.id, group_id: schedule.group.id)%><br>
+            <%= button_to bi("x-square text-danger"), group_schedule_lesson_path(id: lesson, schedule_id: schedule.id, group_id: schedule.group.id), 
+            method: :delete, class: "button", onclick: "return confirm('#{t(".delete_confirm")}')"%></th>
+          <% end %>
         </tr>
         <% end %>
       </table>
       <i class="bi bi- m"></i>
-      <%= link_to bi("plus-square ms-2 text-primary"), new_group_schedule_lesson_path(schedule_id: schedule.id, group_id: schedule.group.id) %>
+      <% if current_user&.able_to_edit?(:schedule) %>
+        <%= link_to bi("plus-square ms-2 text-primary"), new_group_schedule_lesson_path(schedule_id: schedule.id, group_id: schedule.group.id) %>
+      <% end %>
     </div>
   </div>
 </div>
