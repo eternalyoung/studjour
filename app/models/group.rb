@@ -1,6 +1,7 @@
 class Group < ApplicationRecord
   after_create :create_schedule
   has_many :schedules
+  has_many :users
 
   private
 

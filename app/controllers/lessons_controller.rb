@@ -23,7 +23,6 @@ class LessonsController < ApplicationController
 
   # POST /lessons
   def create
-    binding.irb
     @lesson = @schedule.lessons.new(lesson_params)
 
     if @lesson.save

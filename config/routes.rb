@@ -10,7 +10,6 @@ Rails.application.routes.draw do
 
   resources :subjects, only: [:edit, :update, :new, :create, :destory]
   resources :teachers, only: [:edit, :update, :new, :create, :destory]
-  resources :rooms, only: [:edit, :update, :new, :create, :destory]
 
   get "profile", to: "users#show"
   get "profile/edit", to: "users#edit"

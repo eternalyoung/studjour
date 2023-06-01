@@ -25,6 +25,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:tag, :group, :sub_to_schedule, :sub_to_changes, :sub_to_all_events)
+    params.require(:user).permit(:tag, :group_id, :sub_to_schedule, :sub_to_changes, :sub_to_all_events)
   end
 end
