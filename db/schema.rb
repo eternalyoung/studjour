@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_31_172238) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_01_145047) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -37,13 +37,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_172238) do
   end
 
   create_table "lessons_changes", force: :cascade do |t|
-    t.bigint "lesson_id", null: false
+    t.integer "number", null: false
     t.bigint "subject_id", null: false
     t.bigint "teacher_id", null: false
     t.integer "room", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["lesson_id"], name: "index_lessons_changes_on_lesson_id"
+    t.bigint "group_id", null: false
+    t.index ["group_id"], name: "index_lessons_changes_on_group_id"
     t.index ["subject_id"], name: "index_lessons_changes_on_subject_id"
     t.index ["teacher_id"], name: "index_lessons_changes_on_teacher_id"
   end
@@ -125,7 +126,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_172238) do
   add_foreign_key "lessons", "schedules"
   add_foreign_key "lessons", "subjects"
   add_foreign_key "lessons", "teachers"
-  add_foreign_key "lessons_changes", "lessons"
+  add_foreign_key "lessons_changes", "groups"
   add_foreign_key "lessons_changes", "subjects"
   add_foreign_key "lessons_changes", "teachers"
   add_foreign_key "schedules", "groups"

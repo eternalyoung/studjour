@@ -1,11 +1,11 @@
-<h1><%= t(".groups")%></h1>
+<h1><%= t(".groups")%>
+<% if current_user&.able_to_edit?(:schedule) %>
+  <%= link_to bi("plus-square ms-2 text-primary"), new_group_path %>
+<% end %>
+</h1>
 
 <div id="groups">
   <% @groups.each do |group| %>
     <%= render group %>
   <% end %>
 </div>
-
-<% if current_user&.able_to_edit?(:schedule) %>
-  <%= link_to t(".new"), new_group_path, class: "pb-3" %>
-<% end %>

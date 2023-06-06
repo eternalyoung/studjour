@@ -1,3 +1,5 @@
+<div class="row">
+<div class="col-5">
 <%= form_with(model: lessons_change) do |form| %>
   <% if lessons_change.errors.any? %>
     <div style="color: red">
@@ -11,27 +13,37 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :lesson_id, style: "display: block" %>
-    <%= form.text_field :lesson_id %>
+  <div class="mb-3">
+    <%= form.label :group_id, class:"form-label" %>
+    <%= form.collection_select :group_id, Group.all, :id, :name, {}, { class: "form-select mb-1" } %>
+    <%= link_to bi("plus-square"), new_group_path%>
   </div>
 
-  <div>
-    <%= form.label :subject_id, style: "display: block" %>
-    <%= form.text_field :subject_id %>
+  <div class="mb-3">
+    <%= form.label :number, class:"form-label" %>
+    <%= form.number_field :number, class: "form-control", in: 1..7 %>
   </div>
 
-  <div>
-    <%= form.label :teacher_id, style: "display: block" %>
-    <%= form.text_field :teacher_id %>
+  <div class="mb-3">
+    <%= form.label :subject_id, class:"form-label" %>
+    <%= form.collection_select :subject_id, Subject.all, :id, :name, {}, { class: "form-select mb-1" } %>
+    <%= link_to bi("plus-square"), new_subject_path%>
   </div>
 
-  <div>
-    <%= form.label :room_id, style: "display: block" %>
-    <%= form.text_field :room_id %>
+  <div class="mb-3">
+    <%= form.label :teacher_id, class:"form-label" %>
+    <%= form.collection_select :teacher_id, Teacher.all, :id, :name, {}, { class: "form-select mb-1" } %>
+    <%= link_to bi("plus-square"), new_teacher_path%>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mb-3">
+    <%= form.label :room, class:"form-label" %>
+    <%= form.number_field :room, class: "form-control", in: 100..999 %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit t(".save"), class: "btn btn-primary"%>
   </div>
 <% end %>
+</div>
+</div>

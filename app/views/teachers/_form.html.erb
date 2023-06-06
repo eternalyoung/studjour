@@ -1,3 +1,5 @@
+<div class="row">
+<div class="col-5">
 <%= form_with(model: teacher) do |form| %>
   <% if teacher.errors.any? %>
     <div style="color: red">
@@ -11,12 +13,14 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="mb-3">
+    <%= form.label :name, class:"form-label" %>
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mb-3">
+    <%= form.submit t(".save"), class: "btn btn-primary"%>
   </div>
 <% end %>
+</div>
+</div>

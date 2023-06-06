@@ -1,5 +1,5 @@
 ru:
-  hello: "Hello world"
+  hello: "Привет мир!"
   layouts:
     application:
       title: "Журнал студента"
@@ -21,7 +21,13 @@ ru:
         adjacent: Вторая неделя
         schedule_id: Расписание
         teacher_id: Преподаватель
-        room_id: Кабинет
+        room: Кабинет
+        subject_id: Дисциплина
+      lessons_change:
+        number: Номер
+        group_id: Группа
+        teacher_id: Преподаватель
+        room: Кабинет
         subject_id: Дисциплина
       user:
         tag: Телеграмм
@@ -30,12 +36,28 @@ ru:
         sub_to_all_events: Подписка на все мероприятия
       group:
         name: Название
+      subject:
+        name: Название
+      teacher:
+        name: Имя
   
   groups:
+    new:
+      name: Новая группа
+      back: Назад
+    form:
+      save: Сохранить
     index:
       groups: Расписания групп
     group:
       group: Группа
+      delete_confirm: Точно удалить группу?
+    edit:
+      name: Изменить группу
+      group: К группе
+      back: Назад
+    show:
+      back: К списку групп
   
   schedules:
     schedule:
@@ -46,6 +68,22 @@ ru:
   lessons:
     new:
       new: Новый урок
+    edit:
+      name: Изменить урок
+    form:
+      save: Сохранить
+
+  subjects:
+    new:
+      name: Новый предмет
+      back: Назад
+    form:
+      save: Сохранить
+
+  teachers:
+    new:
+      name: Новый преподаватель
+      back: Назад
     form:
       save: Сохранить
 

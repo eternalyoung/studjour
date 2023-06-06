@@ -4,7 +4,7 @@ class SchedulesController < ApplicationController
 
   # GET /schedules
   def index
-    @schedules = Schedule.preload(lessons: [:subjects, :teachers])
+    @schedules = Schedule.preload(lessons: [:subjects, :teachers]).load
   end
 
   # GET /schedules/1

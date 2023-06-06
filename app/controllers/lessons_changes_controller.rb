@@ -54,6 +54,6 @@ class LessonsChangesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def lessons_change_params
-    params.require(:lessons_change).permit(:lesson_id, :subject_id, :teacher_id, :room_id)
+    params.require(:lessons_change).permit(:number, :subject_id, :teacher_id, :room)
   end
 end
