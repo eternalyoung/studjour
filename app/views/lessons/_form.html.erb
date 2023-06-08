@@ -3,7 +3,7 @@
   <%= form_for([@group, @schedule, @lesson]) do |form| %>
     <% if lesson.errors.any? %>
       <div style="color: red">
-        <h2><%= pluralize(lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+        <h2><%= lesson.errors.count %> ошибок:</h2>
 
         <ul>
           <% lesson.errors.each do |error| %>

@@ -3,7 +3,7 @@
 <%= form_with(model: lessons_change) do |form| %>
   <% if lessons_change.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(lessons_change.errors.count, "error") %> prohibited this lessons_change from being saved:</h2>
+      <h2><%= lessons_change.errors.count %> ошибок:</h2>
 
       <ul>
         <% lessons_change.errors.each do |error| %>
