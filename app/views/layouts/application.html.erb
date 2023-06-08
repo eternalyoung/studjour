@@ -49,7 +49,13 @@
             <%= link_to t('.login'), rodauth.login_path, class: 'btn btn-outline-primary' %>
             <% else %>
             <%= link_to t('.profile'), profile_edit_path, class: 'btn btn-outline-primary me-1' %>
-            <%= link_to t('.logout'), rodauth.logout_path, class: 'btn btn-outline-danger' %>
+            <%= form_with url: rodauth.logout_path, method: :post, data: { turbo: false } do |form| %>
+              <% if rodauth.features.include?(:active_sessions) %>
+                <%= form.check_box rodauth.global_logout_param, id: "global-logout", include_hidden: false %>
+                <%= form.label "global-logout", rodauth.global_logout_label %>
+              <% end %>
+              <%= form.submit rodauth.logout_button, class: "btn btn-outline-danger", onclick: "return confirm('#{t(".exit_confirm")}')"  %>
+            <% end %>
             <% end %>
           </div>
         </div>

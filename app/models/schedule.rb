@@ -9,7 +9,7 @@ class Schedule < ApplicationRecord
   }.freeze
 
   belongs_to :group
-  has_many :lessons
+  has_many :lessons, dependent: :destroy
 
   def wday
     DAYS_OF_WEEK[weeks_day]

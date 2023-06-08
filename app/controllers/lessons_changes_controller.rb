@@ -24,7 +24,7 @@ class LessonsChangesController < ApplicationController
     @lessons_change = LessonsChange.new(lessons_change_params)
 
     if @lessons_change.save
-      redirect_to @lessons_change, notice: "Lessons change was successfully created."
+      redirect_to @lessons_change, notice: "Изменение успешно создано."
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class LessonsChangesController < ApplicationController
   # PATCH/PUT /lessons_changes/1
   def update
     if @lessons_change.update(lessons_change_params)
-      redirect_to @lessons_change, notice: "Lessons change was successfully updated."
+      redirect_to @lessons_change, notice: "Изменение успешно изменено."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,7 +42,7 @@ class LessonsChangesController < ApplicationController
   # DELETE /lessons_changes/1
   def destroy
     @lessons_change.destroy
-    redirect_to lessons_changes_url, notice: "Lessons change was successfully destroyed."
+    redirect_to lessons_changes_url, notice: "Изменение успешно удалено."
   end
 
   private

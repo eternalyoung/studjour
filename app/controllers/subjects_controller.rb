@@ -15,7 +15,7 @@ class SubjectsController < ApplicationController
     @subject = Subject.new(subject_params)
 
     if @subject.save
-      redirect_to groups_path(@group), notice: "Subject was successfully created."
+      redirect_to @subject, notice: "Предмет успешно создан."
     else
       render :new, status: :unprocessable_entity
     end
@@ -24,7 +24,7 @@ class SubjectsController < ApplicationController
   # PATCH/PUT /subjects/1
   def update
     if @subject.update(subject_params)
-      redirect_to @subject, notice: "Subject was successfully updated."
+      redirect_to @subject, notice: "Предмет успешно обновлён."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class SubjectsController < ApplicationController
   # DELETE /subjects/1
   def destroy
     @subject.destroy
-    redirect_to subjects_url, notice: "Subject was successfully destroyed."
+    redirect_to @group, notice: "Предмет успешно удалён."
   end
 
   private

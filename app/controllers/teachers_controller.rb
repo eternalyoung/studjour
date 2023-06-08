@@ -15,7 +15,7 @@ class TeachersController < ApplicationController
     @teacher = Teacher.new(teacher_params)
 
     if @teacher.save
-      redirect_to @teacher, notice: "Teacher was successfully created."
+      redirect_to @teacher, notice: "Преподаватель успешно создан."
     else
       render :new, status: :unprocessable_entity
     end
@@ -24,7 +24,7 @@ class TeachersController < ApplicationController
   # PATCH/PUT /teachers/1
   def update
     if @teacher.update(teacher_params)
-      redirect_to @teacher, notice: "Teacher was successfully updated."
+      redirect_to @teacher, notice: "Преподаватель успешно обновлён."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class TeachersController < ApplicationController
   # DELETE /teachers/1
   def destroy
     @teacher.destroy
-    redirect_to teachers_url, notice: "Teacher was successfully destroyed."
+    redirect_to groups_url, notice: "Преподаватель успешно удалён."
   end
 
   private

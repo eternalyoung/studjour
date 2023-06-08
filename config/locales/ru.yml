@@ -11,6 +11,7 @@ ru:
       login: "Войти"
       profile: "Профиль"
       logout: "Выйти"
+      exit_confirm: "Вы точно хотите выйти?"
 
   activerecord:
     models:

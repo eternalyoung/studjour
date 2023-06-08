@@ -26,7 +26,7 @@ class LessonsController < ApplicationController
     @lesson = @schedule.lessons.new(lesson_params)
 
     if @lesson.save
-      redirect_to group_schedules_path(@group), notice: "Lesson was successfully created."
+      redirect_to group_path(@group), notice: "Урок успешно создан."
     else
       render :new, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class LessonsController < ApplicationController
   # PATCH/PUT /lessons/1
   def update
     if @lesson.update(lesson_params)
-      redirect_to group_schedules_path(@group), notice: "Lesson was successfully updated."
+      redirect_to group_path(@group), notice: "Урок успешно обновлен."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -44,7 +44,7 @@ class LessonsController < ApplicationController
   # DELETE /lessons/1
   def destroy
     @lesson.destroy
-    redirect_to group_schedules_path(@group), notice: "Lesson was successfully destroyed."
+    redirect_to group_path(@group), notice: "Урок успешно удалён."
   end
 
   private
