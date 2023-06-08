@@ -7,10 +7,6 @@ class User < ApplicationRecord
   has_many :roles, through: :user_roles
 
   def able_to_edit?(model)
-    case model
-    when :schedule then roles.map(&:name).include?("schedule_compiler")
-    else
-      false
-    end
+    roles.map(&:name).include?(model.to_s)
   end
 end

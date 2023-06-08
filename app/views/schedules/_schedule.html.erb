@@ -8,7 +8,7 @@
           <th>№</th>
           <th><%= t('.room') %></th>
           <th><%= t('.subject') %></th>
-          <th></th>
+          <% if current_user&.able_to_edit?(:schedule) %><th></th><% end %>
         </tr>
         <% schedule.lessons.sort_by(&:number).each do |lesson| %>
         <tr>

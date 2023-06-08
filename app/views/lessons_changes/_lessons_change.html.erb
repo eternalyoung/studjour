@@ -1,22 +1,10 @@
-<div id="<%= dom_id lessons_change %>">
-  <p>
-    <strong>Lesson:</strong>
-    <%= lessons_change.lesson_id %>
-  </p>
-
-  <p>
-    <strong>Subject:</strong>
-    <%= lessons_change.subject_id %>
-  </p>
-
-  <p>
-    <strong>Teacher:</strong>
-    <%= lessons_change.teacher_id %>
-  </p>
-
-  <p>
-    <strong>Room:</strong>
-    <%= lessons_change.room %>
-  </p>
-
-</div>
+<th><%= lessons_change.group.name %></th>
+<th><%= lessons_change.number %></th>
+<th><%= lessons_change.subject.name %></th>
+<th><%= lessons_change.teacher.name %></th>
+<th><%= lessons_change.room %></th>
+<% if current_user&.able_to_edit?(:schedule) %>
+  <th><%= link_to bi("pencil"), edit_lessons_change_path(id: lessons_change) %></th>
+  <th><%= button_to bi("x-square text-danger"), lessons_change_path(id: lessons_change) , 
+  method: :delete, class: "button", onclick: "return confirm('#{t(".delete_confirm")}')"%></th>
+<% end %>

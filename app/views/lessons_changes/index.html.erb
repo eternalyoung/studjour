@@ -1,12 +1,37 @@
-<h1>Lessons changes</h1>
-
-<div id="lessons_changes">
-  <% @lessons_changes.each do |lessons_change| %>
-    <%= render lessons_change %>
-    <p>
-      <%= link_to "Show this lessons change", lessons_change %>
-    </p>
+<h1>
+  <%= t(".changes") %> 
+  <% if current_user&.able_to_edit?(:change) %>
+    <%= link_to bi("plus-square ms-2 text-primary"), new_lessons_change_path %>
   <% end %>
+</h1>
+
+<div id="lessons_changes" class="card">
+  <div class="card-body table-responsive">
+    <table class="table table-responsive-md">
+      <tr>
+        <th><%= t('.group') %></th>
+        <th><%= t('.lesson') %></th>
+        <th><%= t('.subject') %></th>
+        <th><%= t('.teacher') %></th>
+        <th><%= t('.room') %></th>
+        <% if current_user&.able_to_edit?(:schedule) %>
+          <th></th>
+          <th></th>
+        <% end %>
+      </tr>
+    <% @lessons_changes.each do |lessons_change| %>
+      <tr><%= render lessons_change %></tr>
+    <% end %>
+    </table>
+  </div>
 </div>
 
-<%= link_to "New lessons change", new_lessons_change_path %>
+<form>
+  <label for="date" class="mb-3 form-label"> Показать за дату </label>
+  <div class="row">
+  <div class="col-5 col-lg-3">
+  <input type="date" id="date" name="date" class="mb-3 form-control form-control-date"/>
+  </div>
+  </div>
+  <button type="submit", class="btn btn-primary"><%= t(".show") %></button>
+</form>

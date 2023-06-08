@@ -74,6 +74,10 @@ ru:
     form:
       save: Сохранить
 
+  lessons_changes:
+    index:
+      changes: Изменения
+
   subjects:
     new:
       name: Новый предмет

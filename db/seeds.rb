@@ -6,7 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 ROLE = [
-  :schedule_compiler
+  :schedule,
+  :change
 ]
 LESSONS = [
   "Название урока 1",
@@ -34,7 +35,21 @@ ROLE.each do |role|
 end
 
 5.times do
-  Group.find_or_create_by!(name: "#{[*"А".."Я"].sample}-#{rand(99)}-#{rand(99)}")
+  Group.find_or_create_by!(name: "#{%W[Б В Г Д М Н П Р С Т К].sample}-#{rand(99)}-#{rand(99)}")
+end
+
+20.times do
+  LessonsChange.find_or_create_by!(
+    group: Group.all.sample,
+    number: rand(1..8),
+    subject: Subject.find_or_create_by(
+      name: LESSONS.sample
+    ),
+    teacher: Teacher.find_or_create_by(
+      name: TEACHERS.sample
+    ),
+    room: rand(101..550)
+    )
 end
 
 User.create(email: "admin@admin.seed", password: "admin", status: "verified", roles: Role.all, group: Group.all.sample)
