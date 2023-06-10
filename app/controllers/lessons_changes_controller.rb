@@ -3,7 +3,17 @@ class LessonsChangesController < ApplicationController
 
   # GET /lessons_changes
   def index
-    @lessons_changes = LessonsChange.all.order(:group_id, number: :asc)
+    date_param = params[:date]
+
+    date = if date_param.present?
+      Date.parse(date_param)
+    elsif Time.now.hour >= 20
+      Date.tomorrow
+    else
+      Date.today
+    end
+
+    @lessons_changes = LessonsChange.where(date:).order(:group_id, number: :asc)
   end
 
   # GET /lessons_changes/1
@@ -54,6 +64,6 @@ class LessonsChangesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def lessons_change_params
-    params.require(:lessons_change).permit(:group_id, :number, :subject_id, :teacher_id, :room)
+    params.require(:lessons_change).permit(:group_id, :number, :subject_id, :teacher_id, :room, :date)
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_01_145047) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_10_133242) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_145047) do
     t.integer "room", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "date", null: false
     t.index ["group_id"], name: "index_lessons_changes_on_group_id"
     t.index ["subject_id"], name: "index_lessons_changes_on_subject_id"
     t.index ["teacher_id"], name: "index_lessons_changes_on_teacher_id"
@@ -121,6 +122,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_145047) do
     t.bigint "group_id"
     t.index ["email"], name: "index_users_on_email", unique: true, where: "(status = ANY (ARRAY[1, 2]))"
     t.index ["group_id"], name: "index_users_on_group_id"
+  end
+
+  create_table "week_statuses", force: :cascade do |t|
+    t.boolean "even_week", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "lessons", "schedules"

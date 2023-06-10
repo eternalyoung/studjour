@@ -1,4 +1,7 @@
 module ApplicationHelper
+  def even_week?
+    WeekStatus.first_or_create.even_week?
+  end
   def bi(icon)
     "<i class=\"bi bi-#{icon}\"></i>".html_safe
   end
@@ -12,8 +15,8 @@ module ApplicationHelper
 
       type = type.to_sym
       type = :success if type == :notice
-      type = :danger  if type == :alert
-      type = :danger  if type == :error
+      type = :danger if type == :alert
+      type = :danger if type == :error
       next unless ALERT_TYPES.include?(type)
 
       tag_class = options.extract!(:class)[:class]

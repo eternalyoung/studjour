@@ -30,6 +30,7 @@ ru:
         teacher_id: Преподаватель
         room: Кабинет
         subject_id: Дисциплина
+        date: Дата
       user:
         tag: Телеграмм
         sub_to_schedule: Подписка на расписание
@@ -77,6 +78,21 @@ ru:
   lessons_changes:
     index:
       changes: Изменения
+      group: Группа
+      lesson: Номер
+      subject: Предмет
+      teacher: Преподаватель
+      room: Кабинет
+      delete_confirm: Точно удалить изменение?
+      show: Показать
+    new:
+      name: Новое изменение
+      back: Назад
+    form:
+      save: Сохранить
+    edit:
+      name: Изменить изменение
+      back: Назад
 
   subjects:
     new:

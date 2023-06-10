@@ -1,0 +1,35 @@
+.week {
+  width: 30px;
+  height: 30px;
+}
+
+.square {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.half {
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  border: 4px solid #dc3545;
+  background-color: #dc3545;
+}
+
+.top-half {
+  top: 0;
+}
+
+.bottom-half {
+  bottom: 0;
+  transform: translateY(100%);
+}
+
+.active {
+  border: 4px solid #49adfe;
+  background-color: #49adfe;
+}

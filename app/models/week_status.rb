@@ -1,0 +1,2 @@
+class WeekStatus < ApplicationRecord
+end

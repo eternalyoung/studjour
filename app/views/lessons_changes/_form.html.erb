@@ -14,6 +14,11 @@
   <% end %>
 
   <div class="mb-3">
+    <%= form.label :date, class:"form-label" %>
+    <%= form.date_field :date, class:"form-control form-control-date", value: Date.tomorrow.to_s, min: Date.today.to_s %>
+  </div>
+
+  <div class="mb-3">
     <%= form.label :group_id, class:"form-label" %>
     <%= form.collection_select :group_id, Group.all, :id, :name, {}, { class: "form-select mb-1" } %>
     <%= link_to bi("plus-square"), new_group_path%>

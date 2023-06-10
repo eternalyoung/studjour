@@ -1,9 +1,9 @@
-<h1>New lessons change</h1>
+<h1> <%= t(".name") %> </h1>
 
 <%= render "form", lessons_change: @lessons_change %>
 
 <br>
 
 <div>
-  <%= link_to "Back to lessons changes", lessons_changes_path %>
+  <%= link_to t(".back"), lessons_changes_path %>
 </div>

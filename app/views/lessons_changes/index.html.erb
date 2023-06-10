@@ -5,6 +5,15 @@
   <% end %>
 </h1>
 
+<form id="date_form">
+  <div class="row">
+  <div class="col-5 col-lg-3">
+  <input type="date" id="date_picker" name="date" value=<%= params[:date] || (Time.now.hour >= 20 ? Date.tomorrow : Date.today) %> class="mb-3 form-control form-control-date"/>
+  </div>
+  </div>
+  <button type="submit", class="d-none btn btn-primary"><%= t(".show") %></button>
+</form>
+
 <div id="lessons_changes" class="card">
   <div class="card-body table-responsive">
     <table class="table table-responsive-md">
@@ -25,13 +34,3 @@
     </table>
   </div>
 </div>
-
-<form>
-  <label for="date" class="mb-3 form-label"> Показать за дату </label>
-  <div class="row">
-  <div class="col-5 col-lg-3">
-  <input type="date" id="date" name="date" class="mb-3 form-control form-control-date"/>
-  </div>
-  </div>
-  <button type="submit", class="btn btn-primary"><%= t(".show") %></button>
-</form>
