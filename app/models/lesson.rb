@@ -13,6 +13,7 @@ class Lesson < ApplicationRecord
   validates :teacher, presence: true
   validates :room, presence: true
   validates :room, numericality: {greater_than: 99}
+  validates :room, numericality: {less_than: 1000}
   validate :adjacent_lesson_uniqueness
 
   private
@@ -20,6 +21,6 @@ class Lesson < ApplicationRecord
   def adjacent_lesson_uniqueness
     return unless adjacent? && schedule.lessons.where(number:, adjacent: true).exists?
 
-    errors.add(:adjacent, "can only be set for one lesson in the schedule")
+    errors.add(:adjacent, "уже есть у урока")
   end
 end
