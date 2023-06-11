@@ -12,6 +12,7 @@ ru:
       profile: "Профиль"
       logout: "Выйти"
       exit_confirm: "Вы точно хотите выйти?"
+      change_week: "Вы точно хотите поменять неделю для всех расписаний?"
 
   activerecord:
     models:
