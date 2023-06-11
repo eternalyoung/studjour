@@ -33,7 +33,7 @@
               </li>
               <% unless current_user.nil? || current_user.id.nil? || current_user&.group_id.nil? %>
                 <li class="nav-item">
-                  <%= link_to t('.schedules'), group_path(current_user.group_id, params: { actual: true }), class: 'nav-link' %>
+                  <%= link_to t('.schedules'), my_groups_path, class: 'nav-link' %>
                 </li>
               <% end %>
                 <%= link_to t('.changes'), lessons_changes_path, class: 'nav-link' %>

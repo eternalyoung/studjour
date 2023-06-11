@@ -1,0 +1,89 @@
+
+<div class="col-lg-4 col-md-6">
+  <div class="card mb-md-4 mb-1">
+    <div class="card-body">
+      <h4 class="card-title text-center"> <%= schedule.wday %></h4>
+
+      <table class="table">
+        <tr>
+          <th>№</th>
+          <th><%= t('.room') %></th>
+          <th><%= t('.subject') %></th>
+          <% if current_user&.able_to_edit?(:schedule) %><th></th><% end %>
+        </tr>
+
+<% changes = @changes.where(date: Date.current.beginning_of_week + schedule.weeks_day) %>
+<% lessons = schedule.lessons.sort_by(&:number)%>
+<% first_lesson = lessons.first.number %>
+<% changes.where("number < ?", first_lesson).each do |change| %>
+  <tr>
+      <th class="text-danger fw-bold"><%= change.number %></th>
+      <th class="text-danger fw-bold"><%= change.room %></th>
+      <th class="text-danger fw-bold"><%= change.subject.name %><br>
+      <%= change.teacher.name %></th>
+    <% if current_user&.able_to_edit?(:change) %>
+      <th><%= link_to bi("pencil"), edit_lessons_change_path(id: change)%><br>
+      <%= button_to bi("x-square text-danger"), lessons_change_path(id: change), 
+      method: :delete, class: "button", onclick: "return confirm('#{t(".delete_confirm")}')"%></th>
+    <% end %>
+  </tr>
+<% end %>
+
+<% lessons.each.with_index do |lesson, index| %>
+  <% next if lesson.adjacent && even_week? || lessons[index+1]&.adjacent && !even_week? %>
+
+  <% change = changes.find_by(number: lesson.number) %>
+
+  <tr>
+    <% if change %>
+      <th class="text-danger fw-bold"><%= change.number %></th>
+      <th class="text-danger fw-bold"><%= change.room %></th>
+      <th class="text-danger fw-bold"><%= change.subject.name %><br>
+      <%= change.teacher.name %></th>
+
+      <% if current_user&.able_to_edit?(:change) %>
+        <th><%= link_to bi("pencil"), edit_lessons_change_path(id: change)%><br>
+        <%= button_to bi("x-square text-danger"), lessons_change_path(id: change), 
+        method: :delete, class: "button", onclick: "return confirm('#{t(".delete_confirm")}')"%></th>
+      <% end %>
+    <% else%>
+      <th><%= lesson.number %></th>
+      <th><%= lesson.room %></th>
+      <th><%= lesson.subject.name %><br>
+      <%= lesson.teacher.name %></th>
+
+      <% if current_user&.able_to_edit?(:schedule) %>
+        <th><%= link_to bi("pencil"), edit_group_schedule_lesson_path(id: lesson, schedule_id: schedule.id, group_id: schedule.group.id)%><br>
+        <%= button_to bi("x-square text-danger"), group_schedule_lesson_path(id: lesson, schedule_id: schedule.id, group_id: schedule.group.id), 
+        method: :delete, class: "button", onclick: "return confirm('#{t(".delete_confirm")}')"%></th>
+    <% end %>
+    <% end %>
+  </tr>
+<% end %>
+
+<% last_lesson = lessons.last.number %>
+
+<% changes.where("number > ?", last_lesson).each do |change| %>
+  <tr>
+      <th class="text-danger fw-bold"><%= change.number %></th>
+      <th class="text-danger fw-bold"><%= change.room %></th>
+      <th class="text-danger fw-bold"><%= change.subject.name %><br>
+      <%= change.teacher.name %></th>
+    <% if current_user&.able_to_edit?(:change) %>
+      <th><%= link_to bi("pencil"), edit_lessons_change_path(id: change)%><br>
+      <%= button_to bi("x-square text-danger"), lessons_change_path(id: change), 
+      method: :delete, class: "button", onclick: "return confirm('#{t(".delete_confirm")}')"%></th>
+    <% end %>
+  </tr>
+<% end %>
+
+      </table>
+
+      <i class="bi bi- m"></i>
+      <% if current_user&.able_to_edit?(:schedule) %>
+        <%= link_to bi("plus-square ms-2 text-primary"), new_group_schedule_lesson_path(schedule_id: schedule.id, group_id: schedule.group.id) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

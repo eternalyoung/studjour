@@ -1,0 +1,19 @@
+<div id="<%= dom_id group %>">
+  <h3 class="text-center">
+    <strong><%= t(".group")%>:</strong>
+    <%= group.name %>
+    <% if current_user&.able_to_edit?(:schedule) %>
+      <%= link_to bi("pencil"), edit_group_path(id: group.id)%>
+      <div class="btn-group" role="group">
+      <%= button_to bi("x-square text-danger"), group_path(id: group.id), 
+      method: :delete, class: "button", onclick: "return confirm('#{t(".delete_confirm")}')" %>
+      </div>
+    <% end %>
+  </h3>
+
+  <div class="row">
+    <% group.schedules.each do |schedule| %>
+      <%= render "schedules/my_schedule", schedule: %>
+    <% end %>
+  </div>
+</div>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :lessons_changes
   resources :groups do
+    get :my, on: :collection
     resources :schedules, except: %i[new create destroy] do
       resources :lessons
     end

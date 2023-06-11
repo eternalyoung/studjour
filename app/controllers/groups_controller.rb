@@ -10,6 +10,12 @@ class GroupsController < ApplicationController
   def show
   end
 
+  # GET /groups/1
+  def my
+    @group = current_user.group
+    @changes = LessonsChange.where(group: @group)
+  end
+
   # GET /groups/new
   def new
     @group = Group.new
