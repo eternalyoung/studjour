@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      redirect_to profile_edit_path, notice: "Пользователь успешно создан, проверьте почту."
+      redirect_to profile_edit_path, notice: "Профиль успешно обновлен."
     else
       render :edit, status: :unprocessable_entity
     end
