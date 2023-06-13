@@ -7,7 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 ROLE = [
   :schedule,
-  :change
+  :change,
+  :event
 ]
 LESSONS = [
   "Название урока 1",
@@ -56,6 +57,7 @@ end
 end
 
 User.create(email: "admin@admin.seed", password: "admin", status: "verified", roles: Role.all, group: Group.all.sample)
+User.create(email: "user@user.seed", password: "user", status: "user", group: Group.all.sample)
 
 Group.all.each do |group|
   6.times do |day|

@@ -1,0 +1,33 @@
+<div class="col-lg-4 col-md-6" id="<%= dom_id event %>">
+  <div class="card mb-md-4 mb-1">
+    <div class="card-body">
+      <h4 class="card-title text-center">
+        <%= event.title %>
+        <% if current_user&.able_to_edit?(:event) %>
+          <%= link_to bi("pencil"), edit_event_path(id: event.id)%>
+          <div class="btn-group" role="group">
+          <%= button_to bi("x-square text-danger"), event_path(id: event.id), 
+          method: :delete, class: "button mb-1", onclick: "return confirm('#{t(".delete_confirm")}')" %>
+          </div>
+        <% end %>
+      </h4>
+      <p class="card-text"></p>
+      <p class="card-text"></p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <%= event.description %>
+        </li>
+        <li class="list-group-item fw-bold text-primary">
+          <%= event.datetime.strftime("%d.%m.%Y %H:%M") %>
+        </li>
+        <li class="list-group-item text-center">
+          <% if true %>
+            <%= link_to "Подписаться", groups_path, class: "btn btn-primary"%>
+          <% else %>
+            <%= link_to "Отписаться", groups_path, class: "btn btn-danger"%>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

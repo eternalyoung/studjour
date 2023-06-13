@@ -2,6 +2,7 @@ module ApplicationHelper
   def even_week?
     WeekStatus.first_or_create.even_week?
   end
+
   def bi(icon)
     "<i class=\"bi bi-#{icon}\"></i>".html_safe
   end

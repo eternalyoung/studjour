@@ -18,9 +18,12 @@ gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "rodauth-i18n", "~> 0.7.1"
 gem "rodauth-rails", "~> 1.9"
+gem "sidekiq", "~> 7.1"
 
 group :development, :test do
   gem "rubocop"
+  gem "rubocop-rails"
+  gem "rubocop-factory_bot"
   gem "solargraph"
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "capistrano", "~> 3.10", require: false
@@ -28,7 +31,7 @@ group :development, :test do
   gem "capistrano-bundler", "~> 1.2", require: false
   gem "capistrano-passenger", "~> 0.2", require: false
   gem "capistrano-rbenv", "~> 2.1", require: false
-  # gem "capistrano-resque", "~> 0.2.3", require: false
+  gem "capistrano-sidekiq", require: false
 end
 
 group :test do

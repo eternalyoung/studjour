@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_10_133242) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_13_150637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
+
+  create_table "events", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description", null: false
+    t.datetime "datetime", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
@@ -70,6 +78,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_133242) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_subjects_on_name", unique: true
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_subscriptions_on_event_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -137,6 +154,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_133242) do
   add_foreign_key "lessons_changes", "subjects"
   add_foreign_key "lessons_changes", "teachers"
   add_foreign_key "schedules", "groups"
+  add_foreign_key "subscriptions", "events"
+  add_foreign_key "subscriptions", "users"
   add_foreign_key "user_login_change_keys", "users", column: "id"
   add_foreign_key "user_password_reset_keys", "users", column: "id"
   add_foreign_key "user_remember_keys", "users", column: "id"
