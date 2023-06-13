@@ -45,13 +45,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_150637) do
   end
 
   create_table "lessons_changes", force: :cascade do |t|
-    t.bigint "group_id", null: false
     t.integer "number", null: false
     t.bigint "subject_id", null: false
     t.bigint "teacher_id", null: false
     t.integer "room", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "group_id", null: false
     t.date "date", null: false
     t.index ["group_id"], name: "index_lessons_changes_on_group_id"
     t.index ["subject_id"], name: "index_lessons_changes_on_subject_id"

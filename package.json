@@ -7,7 +7,8 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
     "esbuild": "^0.17.11",
-    "sass": "^1.59.3"
+    "sass": "^1.59.3",
+    "yarn": "^1.22.19"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets",
