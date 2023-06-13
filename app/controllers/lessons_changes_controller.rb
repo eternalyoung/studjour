@@ -7,7 +7,7 @@ class LessonsChangesController < ApplicationController
 
     date = if date_param.present?
       Date.parse(date_param)
-    elsif Time.now.hour >= 20
+    elsif Time.zone.now.hour >= 20
       Date.tomorrow
     else
       Date.today
