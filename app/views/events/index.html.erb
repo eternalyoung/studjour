@@ -1,9 +1,11 @@
-<h1><%= t(".name") %></h1>
+<h1><%= t(".name") %>
+<% if current_user&.able_to_edit?(:event) %>
+  <%= link_to bi("plus-square ms-2 text-primary"), new_event_path %>
+<% end %>
+</h1>
 
 <div class="row" id="events">
   <% @events.each do |event| %>
     <%= render event %>
   <% end %>
 </div>
-
-<%= link_to t(".new"), new_event_path %>

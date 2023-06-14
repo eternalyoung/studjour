@@ -43,6 +43,10 @@ ru:
         name: Название
       teacher:
         name: Имя
+      event:
+        title: Название
+        description: Описание
+        datetime: Двта и время
   
   groups:
     new:
@@ -61,6 +65,20 @@ ru:
       back: Назад
     show:
       back: К списку групп
+
+  events:
+    new:
+      name: Новое мероприятие
+      back: Назад
+    form:
+      save: Сохранить
+    index:
+      name: Мероприятия
+    edit:
+      name: Изменить мероприятие
+      back: Назад
+    show:
+      back: Назад
   
   schedules:
     schedule:
