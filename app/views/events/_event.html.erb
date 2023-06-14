@@ -20,13 +20,21 @@
         <li class="list-group-item fw-bold text-primary">
           <%= event.datetime.strftime("%d.%m.%Y %H:%M") %>
         </li>
+        <% if current_user.present? %>
         <li class="list-group-item text-center">
-          <% if true %>
-            <%= link_to "Подписаться", groups_path, class: "btn btn-primary"%>
+          <% if current_user.subscriptions.exists?(event_id: event.id) %>
+            <%= form_with model: @subscription, url: subscriptions_path, method: :delete do |form| %>
+              <%= form.hidden_field :event_id, value: event.id %>
+              <%= form.submit "Отписаться", class: "btn btn-danger" %>
+            <% end %>
           <% else %>
-            <%= link_to "Отписаться", groups_path, class: "btn btn-danger"%>
+            <%= form_with model: @subscription, url: subscriptions_path, method: :post do |form| %>
+              <%= form.hidden_field :event_id, value: event.id %>
+              <%= form.submit "Подписаться", class: "btn btn-primary" %>
+            <% end %>
           <% end %>
         </li>
+        <% end %>
       </ul>
     </div>
   </div>

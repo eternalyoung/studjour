@@ -16,8 +16,9 @@ Rails.application.routes.draw do
     post :toggle, on: :collection
   end
 
-  resources :events
-  resources :subscriptions, only: %i[create destroy]
+  resources :events, except: %i[show]
+  resources :subscriptions, only: :create
+  delete "/subscriptions", to: "subscriptions#destroy"
 
   get "profile", to: "users#show"
   get "profile/edit", to: "users#edit"

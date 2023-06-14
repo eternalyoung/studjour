@@ -3,6 +3,7 @@ class User < ApplicationRecord
   enum :status, unverified: 1, verified: 2, closed: 3
 
   belongs_to :group, optional: true
+  has_many :subscriptions, dependent: :destroy
   has_many :user_roles
   has_many :roles, through: :user_roles
 
