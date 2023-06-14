@@ -3,7 +3,7 @@
 <%= form_with(model: event) do |form| %>
   <% if event.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(event.errors.count, "error") %> ошибок:</h2>
+      <h2><%= event.errors.count %> ошибок:</h2>
 
       <ul>
         <% event.errors.each do |error| %>
