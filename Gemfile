@@ -19,6 +19,8 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "rodauth-i18n", "~> 0.7.1"
 gem "rodauth-rails", "~> 1.9"
 gem "sidekiq", "~> 7.1"
+gem "telegram-bot-ruby", "~> 1.0"
+gem "dotenv-rails"
 
 group :development, :test do
   gem "rubocop"
