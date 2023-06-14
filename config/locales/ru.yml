@@ -79,6 +79,8 @@ ru:
       back: Назад
     show:
       back: Назад
+    event:
+      delete_confirm: Точно удалить мероприятие?
   
   schedules:
     schedule:
