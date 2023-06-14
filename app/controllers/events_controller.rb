@@ -1,5 +1,16 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: :destroy
+  before_action :set_event, only: [:edit, :destroy]
+
+  def index
+    @events = Event.all
+  end
+
+  def new
+    @event = Event.new
+  end
+
+  def edit
+  end
 
   def create
     @event = Event.new(event_params)
