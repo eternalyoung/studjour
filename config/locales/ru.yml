@@ -46,7 +46,7 @@ ru:
       event:
         title: Название
         description: Описание
-        datetime: Двта и время
+        datetime: Дата и время
   
   groups:
     new:
@@ -87,6 +87,10 @@ ru:
       room: Кабинет
       subject: Предмет
       delete_confirm: Точно удалить урок?
+    my_schedule:
+      room: Кабинет
+      subject: Предмет
+      delete_confirm: Точно удалить?
 
   lessons:
     new:
@@ -97,6 +101,8 @@ ru:
       save: Сохранить
 
   lessons_changes:
+    lessons_change:
+      delete_confirm: Точно удалить изменение?
     index:
       changes: Изменения
       group: Группа
@@ -104,7 +110,6 @@ ru:
       subject: Предмет
       teacher: Преподаватель
       room: Кабинет
-      delete_confirm: Точно удалить изменение?
       show: Показать
     new:
       name: Новое изменение

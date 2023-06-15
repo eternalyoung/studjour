@@ -1,7 +1,8 @@
 class Group < ApplicationRecord
   after_create :create_schedule
   has_many :schedules, dependent: :destroy
-  has_many :users
+  has_many :lessons_changes, dependent: :destroy
+  has_many :users, dependent: :nullify
 
   private
 

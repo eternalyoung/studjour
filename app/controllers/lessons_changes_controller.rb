@@ -7,17 +7,13 @@ class LessonsChangesController < ApplicationController
 
     date = if date_param.present?
       Date.parse(date_param)
-    elsif Time.zone.now.hour >= 20
+    elsif Time.zone.now.hour >= 12
       Date.tomorrow
     else
       Date.today
     end
 
     @lessons_changes = LessonsChange.where(date:).order(:group_id, number: :asc)
-  end
-
-  # GET /lessons_changes/1
-  def show
   end
 
   # GET /lessons_changes/new
@@ -34,7 +30,7 @@ class LessonsChangesController < ApplicationController
     @lessons_change = LessonsChange.new(lessons_change_params)
 
     if @lessons_change.save
-      redirect_to @lessons_change, notice: "Изменение успешно создано."
+      redirect_to lessons_changes_path, notice: "Изменение успешно создано."
     else
       render :new, status: :unprocessable_entity
     end
@@ -43,7 +39,7 @@ class LessonsChangesController < ApplicationController
   # PATCH/PUT /lessons_changes/1
   def update
     if @lessons_change.update(lessons_change_params)
-      redirect_to @lessons_change, notice: "Изменение успешно изменено."
+      redirect_to lessons_changes_path, notice: "Изменение успешно изменено."
     else
       render :edit, status: :unprocessable_entity
     end
