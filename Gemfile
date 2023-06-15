@@ -22,6 +22,7 @@ gem "sidekiq", "~> 7.1"
 gem "dotenv-rails"
 
 group :development, :test do
+  gem "letter_opener"
   gem "rubocop"
   gem "rubocop-rails"
   gem "rubocop-factory_bot"
