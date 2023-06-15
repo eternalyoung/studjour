@@ -65,6 +65,8 @@ ru:
       back: Назад
     show:
       back: К списку групп
+    my:
+      back: К списку всех групп
 
   events:
     new:

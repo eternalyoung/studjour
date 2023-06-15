@@ -11,9 +11,9 @@
           <th><%= t('.subject') %></th>
           <% if current_user&.able_to_edit?(:schedule) %><th></th><% end %>
         </tr>
-
 <% changes = @changes.where(date: Date.current.beginning_of_week + schedule.weeks_day) %>
 <% lessons = schedule.lessons.sort_by(&:number)%>
+<% if lessons.any? %>
 <% first_lesson = lessons.first.number %>
 <% changes.where("number < ?", first_lesson).each do |change| %>
   <tr>
@@ -75,6 +75,7 @@
       method: :delete, class: "button", onclick: "return confirm('#{t(".delete_confirm")}')"%></th>
     <% end %>
   </tr>
+<% end %>
 <% end %>
 
       </table>
