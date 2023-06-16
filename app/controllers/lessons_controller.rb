@@ -49,6 +49,10 @@ class LessonsController < ApplicationController
 
   private
 
+  def authorization
+    render_forbidden unless current_user&.able_to_edit?(:schedule)
+  end
+
   def set_group
     @group = Group.find(params[:group_id])
   end

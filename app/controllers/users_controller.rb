@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :authorization
   before_action :set_user
 
   # GET /users/1

@@ -53,6 +53,10 @@ class LessonsChangesController < ApplicationController
 
   private
 
+  def authorization
+    render_forbidden unless current_user&.able_to_edit?(:change)
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_lessons_change
     @lessons_change = LessonsChange.find(params[:id])

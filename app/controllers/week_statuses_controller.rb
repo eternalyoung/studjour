@@ -10,6 +10,10 @@ class WeekStatusesController < ApplicationController
 
   private
 
+  def authorization
+    render_forbidden unless current_user&.able_to_edit?(:schedule)
+  end
+
   def set_week_status
     @week_status = WeekStatus.first_or_create
   end

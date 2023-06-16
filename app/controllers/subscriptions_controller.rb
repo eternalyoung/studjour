@@ -27,6 +27,10 @@ class SubscriptionsController < ApplicationController
 
   private
 
+  def authorization
+    render_forbidden unless current_user
+  end
+
   def set_event
     @event = Event.find(params[:event_id])
   end

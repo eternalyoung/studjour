@@ -38,6 +38,10 @@ class SubjectsController < ApplicationController
 
   private
 
+  def authorization
+    render_forbidden unless current_user&.able_to_edit?(:schedule)
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_subject
     @subject = Subject.find(params[:id])

@@ -37,6 +37,10 @@ class EventsController < ApplicationController
 
   private
 
+  def authorization
+    render_forbidden unless current_user&.able_to_edit?(:event)
+  end
+
   def set_event
     @event = Event.find(params[:id])
   end
